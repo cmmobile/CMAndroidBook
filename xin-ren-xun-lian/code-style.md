@@ -237,7 +237,6 @@ for(int i = 0; i < MAX_COUNT; i++) {
 * item\_xxx.xml
 * layout\_xxx.xml
 * dialog\_xxx.xml
-* btn\_xxx.xml
 * shape\_xxx.xml
 * selector\_xxx.xml
 * .....
@@ -246,14 +245,13 @@ for(int i = 0; i < MAX_COUNT; i++) {
 
 舉例:
 
-// 社團模組之發文頁Layout
+社團模組之發文頁Layout
 
 * community\_layout\_activity\_newpost
 
-// 自選股模組之編輯自選股頁Layout
+自選股模組之編輯自選股頁Layout
 
 * customgroup\_layout\_activity\_editcustomgroup
-* .....
 
 **View Id的命名**
 
