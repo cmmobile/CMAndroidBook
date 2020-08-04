@@ -1,4 +1,4 @@
-# 2:Kotlin basics
+# 2: Kotlin basics
 
 ### **Question 1**
 

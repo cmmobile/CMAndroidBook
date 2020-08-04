@@ -1,4 +1,4 @@
-# 3:Functions
+# 3: Functions
 
 ### **Question 1**
 

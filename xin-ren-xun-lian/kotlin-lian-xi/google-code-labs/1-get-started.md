@@ -1,4 +1,4 @@
-# 1:Get started
+# 1: Get started
 
 ### **Question 1**
 
