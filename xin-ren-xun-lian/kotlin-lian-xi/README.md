@@ -6,5 +6,7 @@ description: 給予不熟悉Kotlin的新人，藉由Google Code Lab來提升基�
 
 {% page-ref page="google-code-labs/" %}
 
+{% page-ref page="cheng-shi-lian-xi-ti.md" %}
+
 
 
