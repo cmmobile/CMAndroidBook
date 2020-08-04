@@ -14,5 +14,4 @@
     * [3: Functions](xin-ren-xun-lian/kotlin-lian-xi/google-code-labs/3-functions.md)
     * [4: Object-oriented programming](xin-ren-xun-lian/kotlin-lian-xi/google-code-labs/untitled-2.md)
     * [5.1: Extensions](xin-ren-xun-lian/kotlin-lian-xi/google-code-labs/untitled-1.md)
-  * [Class vs Data Class](xin-ren-xun-lian/kotlin-lian-xi/class-vs-data-class.md)
 
