@@ -337,6 +337,10 @@ for(int i = 0; i < MAX_COUNT; i++) {
     val tempTaxi: Taxi = Taxi()
 
     val tempCar: Car = tempTaxi as Car // 轉型成功
+
+    if(tempCar is Car) {
+        tempCar.xxx()
+    }
     ```
 
   * java
@@ -391,7 +395,7 @@ for(int i = 0; i < MAX_COUNT; i++) {
   String.format("first:%d second:%d third:%d",a,b,c)
   ```
 
-* 字串轉型態 可以直接 `"String".toInt()`、`"String".toDouble()`....
+* 字串轉型態 可以直接 `"String".toIntOrNull()`、`"String".toDoubleOrNull()`....
 * 比較字串可以直接用 `"FirstString" == "SecondString"` 的寫法 ，Kotlin有幫你做好了。如果需要忽略大小寫可以這樣寫 `"FirstString".equals("SecondString",true)`
 * 請使用 `string.IsNullOrEmpty()` 來檢查 null or 空字串，而非 `str == null` 或 `str == ""`
 
