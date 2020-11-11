@@ -4,6 +4,12 @@
 
 ## 新人訓練
 
+* [IDE Git常用操作](xin-ren-xun-lian/ide-git-chang-yong-cao-zuo/README.md)
+  * [初始化Git](xin-ren-xun-lian/ide-git-chang-yong-cao-zuo/chu-shi-hua-git.md)
+  * [Commit](xin-ren-xun-lian/ide-git-chang-yong-cao-zuo/commit.md)
+  * [新增、刪除、切換Branch](xin-ren-xun-lian/ide-git-chang-yong-cao-zuo/xin-zeng-shan-chu-qie-huan-branch.md)
+  * [合併Branch](xin-ren-xun-lian/ide-git-chang-yong-cao-zuo/he-bing-branch.md)
+  * [解衝突](xin-ren-xun-lian/ide-git-chang-yong-cao-zuo/jie-chong-tu.md)
 * [工具篇](xin-ren-xun-lian/gong-ju-pian.md)
 * [Coding Style](xin-ren-xun-lian/code-style.md)
 * [架構](xin-ren-xun-lian/jia-gou.md)
