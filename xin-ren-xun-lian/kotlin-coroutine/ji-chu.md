@@ -1,4 +1,4 @@
-# Kotlin-Coroutine
+# 基礎
 
 ## Coroutine是什麼？
 
@@ -16,7 +16,7 @@
 
 這句話是在說，允許函式被暫停\(suspended\)執行之後再回復\(resumed\)執行，而暫停執行的函式，狀態允許被保留，復原後再以暫停時的狀態繼續執行．
 
-![](../.gitbook/assets/1_mxsd2ch9qlnycfyht0eqrq.png)
+![](../../.gitbook/assets/1_mxsd2ch9qlnycfyht0eqrq.png)
 
 根據上圖解釋，當main thread執行到function A並且需要等IO thread 耗時處理的結果，那我先暫停 function A，協調讓出main thread讓main thread先去執行其他的事情，等到IO thread的耗時處理結束後得到結果，再回復function A 繼續執行。
 
