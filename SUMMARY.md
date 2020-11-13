@@ -23,4 +23,7 @@
   * [程式練習題](xin-ren-xun-lian/kotlin-lian-xi/cheng-shi-lian-xi-ti.md)
 * [Kotlin-Coroutine](xin-ren-xun-lian/kotlin-coroutine/README.md)
   * [基礎](xin-ren-xun-lian/kotlin-coroutine/ji-chu.md)
+  * [Scope和Context](xin-ren-xun-lian/kotlin-coroutine/scope-he-context.md)
+  * [Dispatchers](xin-ren-xun-lian/kotlin-coroutine/dispatchers.md)
+  * [Job](xin-ren-xun-lian/kotlin-coroutine/job.md)
 
