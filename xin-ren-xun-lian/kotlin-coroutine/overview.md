@@ -2,9 +2,9 @@
 
 ## 為什麼要使用
 
-如果我們在Main Thread執行費時的工作或是API的請求，將會造成Main Thread被主塞，導致App被凍結。所以必須將這些工作移至其他Thread執行，而Coroutine是一個簡單管理非同步的操作。不像被棄用的AsyncTask或是直接產生一個新的Thread，這些工作如果要取消，都要做複雜的操作。
+如果我們在Main Thread執行費時的工作或是API的請求，將會造成Main Thread被主塞，導致App被凍結。所以必須將這些工作移至其他Thread執行，而Coroutine是一個簡單管理非同步的操作。不像被棄用的AsyncTask或是直接產生一個新的Thread，這些工作如果要取消，都要做複雜的操作。
 
-## Callback vs Coroutine
+## Callback vs Coroutine
 
 情境：現在使用者要輸入帳號密碼登入我們的伺服器，最後會得到使用者相關數據。
 
