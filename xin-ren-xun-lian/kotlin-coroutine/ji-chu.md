@@ -54,8 +54,8 @@ fun main() {
 		Thread.sleep(1000L)
 		println("World!")
 	}
-    println("Hello,")
-    Thread.sleep(2000L)
+	println("Hello,")
+	Thread.sleep(2000L)
 }
 ```
 
@@ -72,7 +72,8 @@ fun main() {
 }
 ```
 
-以上兩個效果是一樣的，那如果把Coroutine的Thread.sleep\(\)改成delay\(\)，編譯器會錯誤。
+以上兩個效果是一樣的，都是透過Thread.sleep\(\)把當前的Thread Blocking。當前的Thread不能去做其他事。  
+為了讓當前的Thread可以做其他事，必須把它換成Coroutine。所以我們試著把Thread.sleep\(\)改成delay\(\)，編譯器會錯誤。
 
 ```text
 Suspend function 'delay' should be called only from a coroutine or another suspend function
