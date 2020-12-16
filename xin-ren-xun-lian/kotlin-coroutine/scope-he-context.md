@@ -96,78 +96,23 @@ async會回傳一個Deferred代表之後再回來取值，透過await\(\)可以�
 
 ### CoroutineContext繼承關係
 
-從上面我們已經知道如何產新的Coroutine，那新的Coroutine的Context又是什麼？
+一個Coroutine通常會有一個Parent的Scope或是Parent的Coroutine。
 
-**Parent context** = Defaults + inherited `CoroutineContext` + arguments
+**Parent的Context** = 預設 + 繼承的CoroutineContext + 參數
 
+* 預設：CoroutineDispatcher -&gt; Dispatcher.Default，CoroutineName -&gt; "coroutine"。
+* 繼承的CoroutineContext：從CoroutineScope或一個Coroutine產生。
+* 參數：透過Coroutine建構式傳遞產生，如果有同樣的CoroutineContext元素，優先權會蓋過相同的元素。
 
+**Note**：CoroutineContext可以透過+\(加號\)來進行結合成一組元素。覆蓋規則：加號的右邊會蓋過左邊，例如：\(Dispatcher.Main + "Name"\) + \(Dispatcher.IO\) = \(Dispatcher.IO + "Name"\)。
 
-```text
-public fun CoroutineScope.launch(
-    context: CoroutineContext = EmptyCoroutineContext,
-    start: CoroutineStart = CoroutineStart.DEFAULT,
-    block: suspend CoroutineScope.() -> Unit
-): Job {
-    val newContext = newCoroutineContext(context)
-    val coroutine = if (start.isLazy)
-        LazyStandaloneCoroutine(newContext, block) else
-        StandaloneCoroutine(newContext, active = true)
-    coroutine.start(start, coroutine, block)
-    return coroutine
-}
+### Child Coroutine的Context
 
-public actual fun CoroutineScope.newCoroutineContext(context: CoroutineContext): CoroutineContext {
-    val combined = coroutineContext + context
-    val debug = if (DEBUG) combined + CoroutineId(COROUTINE_ID.incrementAndGet()) else combined
-    return if (combined !== Dispatchers.Default && combined[ContinuationInterceptor] == null)
-        debug + Dispatchers.Default else debug
-}
-```
+透過Parent產生的Coroutine Context規則如下：
 
-這個方法\(Launch\)被定義在一個CoroutineScope的Extension方法，並且擁有一個CoroutineContext的參數．
+**新的Coroutine Context** = Parent Context + Job\(\)
 
-所以實際上在這個方法中會有兩個Context，一個是Scope本的Context，另一個launch傳進來的Context．
+![](../../.gitbook/assets/0_lpniofvgqqrqpz__.png)
 
-並且在原始碼中看到newCoroutineContext這個方法，將兩個Context合併\(plus\)起來後，產生一個新的Context，然後再放進去一個新的Coroutine裡面．
-
-這種操作可以理解為新的Coroutine\(子\)擁有\(繼承\)父類別的上下文，
-
-一般來說，一個CoroutineScope中的CoroutineContext會擁有一個Job來當作Context的一部分．
-
-註:除了GlobalSocope，因為定義的Context是EmptyCoroutineContext，裡面沒有包含任何一個Job．
-
-在原始碼中已經幫我們定義一個CoroutineScope．當然我們也可以自己實作CoroutineScope這個介面．
-
-已經提供的實作
-
-```text
-public fun CoroutineScope(context: CoroutineContext): CoroutineScope =
-    ContextScope(if (context[Job] != null) context else context + Job())
-```
-
-自己的實作
-
-```text
-object : CoroutineScope {
-        override val coroutineContext: CoroutineContext
-            get() = Job()
-
-    }
-```
-
-**複寫子Scope的Context**
-
-在上面的說明可以知道Scope的父子關係，我們也可以在launch時，提供一個CourtineContext來複寫父類別的Context行為．
-
-```text
-fun main() = runBlocking {
-    launch(CoroutineName("child")) {
-        println("My context is $coroutineContext}")        
-    }
-}
-```
-
-```text
-My context is [CoroutineName(child), StandaloneCoroutine{Active}@4534b60d, BlockingEventLoop@3fa77460]}
-```
+從父類別產生的Coroutine實體的Context，總是跟Parent的Context不一樣，會得到一個新的Job。
 
