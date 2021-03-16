@@ -1,5 +1,5 @@
 ---
-description: 用來體驗Kotlin的用法，並提升使用熟練度。
+description: 用來體驗Kotlin，並提升使用熟練度。
 ---
 
 # Google Code Labs

@@ -15,6 +15,7 @@
 
 ## 基礎課程-1 <a id="ji-chu-ke-cheng"></a>
 
+* [Android Studio](ji-chu-ke-cheng/android-studio.md)
 * [Kotlin練習](ji-chu-ke-cheng/kotlin-lian-xi/README.md)
   * [Google Code Labs](ji-chu-ke-cheng/kotlin-lian-xi/google-code-labs/README.md)
     * [1: Get started](ji-chu-ke-cheng/kotlin-lian-xi/google-code-labs/1-get-started.md)
@@ -23,6 +24,7 @@
     * [4: Object-oriented programming](ji-chu-ke-cheng/kotlin-lian-xi/google-code-labs/untitled-2.md)
     * [5.1: Extensions](ji-chu-ke-cheng/kotlin-lian-xi/google-code-labs/untitled-1.md)
   * [程式練習題](ji-chu-ke-cheng/kotlin-lian-xi/cheng-shi-lian-xi-ti.md)
+  * [參考](ji-chu-ke-cheng/kotlin-lian-xi/can-kao.md)
 * [建立專案](ji-chu-ke-cheng/jian-li-zhuan-an.md)
 * [專案結構](ji-chu-ke-cheng/zhuan-an-jie-gou.md)
 * [建立模擬器](ji-chu-ke-cheng/jian-li-mo-ni-qi.md)
