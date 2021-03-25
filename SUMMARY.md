@@ -44,4 +44,8 @@
 
 * [建立APP](da-da-jiang-yi/jian-li-app.md)
 * [開啟手機開發者權限](da-da-jiang-yi/kai-qi-shou-ji-kai-fa-zhe-quan-xian.md)
+* [Layout](da-da-jiang-yi/layout.md)
+* [View](da-da-jiang-yi/view.md)
+* [Runtime Permission](da-da-jiang-yi/runtime-permission.md)
+* [Q&A](da-da-jiang-yi/q-and-a.md)
 
