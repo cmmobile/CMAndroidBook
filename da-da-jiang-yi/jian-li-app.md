@@ -4,7 +4,7 @@ description: 了解專案基本架構，
 
 # 建立APP
 
-#### 建立空白專案
+### 建立空白專案
 
 ![&#x958B;&#x555F;](https://lh5.googleusercontent.com/jIWpM2p7X9yIpxc71qEPbItTBbHr9ygB7SZla7quunOHT2sG6aXhwY_g5p4Ujd_4gsEp69PYzV8vtq4ATg7mq3RtM_XRJxPNEyjYBZlur_sH9EMbFY15xmsI_yELZ4b4X0swF0sXONo)
 
@@ -12,7 +12,7 @@ description: 了解專案基本架構，
 
 ![&#x70BA;&#x5C08;&#x6848;&#x547D;&#x540D;](https://lh6.googleusercontent.com/z0jUZvWtHkAWZ9PUVU1obgBuJb8xZmaQbN6kbvgGxGPH226q1AOHV-DfJOtXJYbRH_AI-WweIip6SPk4dawyKutz8lWyciu_nTXDq7wR8hyh8PwBiG3lB4053Dx6PG-VFoMnYS0lwhY)
 
-#### **專案基本架構**
+### **專案基本架構**
 
 
 
@@ -52,7 +52,7 @@ description: 了解專案基本架構，
   * **strings**
   * **styles**
 
-#### **執行App**
+### **執行App**
 
 * **Emulator**
 * **Play**
