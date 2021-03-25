@@ -40,3 +40,8 @@
   * [合併Branch](ji-chu-ke-cheng/ide-git-chang-yong-cao-zuo/he-bing-branch.md)
   * [解衝突](ji-chu-ke-cheng/ide-git-chang-yong-cao-zuo/jie-chong-tu.md)
 
+## 大大講義\_1 <a id="da-da-jiang-yi"></a>
+
+* [建立APP](da-da-jiang-yi/jian-li-app.md)
+* [開啟手機開發者權限](da-da-jiang-yi/kai-qi-shou-ji-kai-fa-zhe-quan-xian.md)
+
