@@ -32,6 +32,7 @@
 * [建立專案](ji-chu-ke-cheng/jian-li-zhuan-an.md)
 * [專案結構](ji-chu-ke-cheng/zhuan-an-jie-gou.md)
 * [建立模擬器](ji-chu-ke-cheng/jian-li-mo-ni-qi.md)
+* [手機開發者權限](ji-chu-ke-cheng/kai-qi-shou-ji-kai-fa-zhe-quan-xian.md)
 * [Layout](ji-chu-ke-cheng/layout.md)
 * [IDE Git常用操作](ji-chu-ke-cheng/ide-git-chang-yong-cao-zuo/README.md)
   * [初始化Git](ji-chu-ke-cheng/ide-git-chang-yong-cao-zuo/chu-shi-hua-git.md)
@@ -43,7 +44,6 @@
 ## 大大講義\_1 <a id="da-da-jiang-yi"></a>
 
 * [建立APP](da-da-jiang-yi/jian-li-app.md)
-* [開啟手機開發者權限](da-da-jiang-yi/kai-qi-shou-ji-kai-fa-zhe-quan-xian.md)
 * [Layout](da-da-jiang-yi/layout.md)
 * [View](da-da-jiang-yi/view.md)
 * [Runtime Permission](da-da-jiang-yi/runtime-permission.md)
