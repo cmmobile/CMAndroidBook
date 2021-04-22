@@ -72,7 +72,9 @@ fun main() {
 }
 ```
 
-以上兩個效果是一樣的，都是透過Thread.sleep\(\)把當前的Thread Blocking。當前的Thread不能去做其他事。  
+以上兩個效果是一樣的，都是透過Thread.sleep\(2000L\)把當前的Thread Blocking。當前的Thread不能去做其他事。
+
+這邊先以Coroutine範例進行討論：  
 為了讓當前的Thread可以做其他事，必須把它換成Coroutine。所以我們試著把Thread.sleep\(\)改成delay\(\)，編譯器會錯誤。
 
 ```text
@@ -89,7 +91,7 @@ public suspend fun delay(timeMillis: Long) {
 }
 ```
 
-會發現fun前面多了一個suspend的簽名，這是用來告訴編譯器的一個標記，他會被編成[CPS](https://www.youtube.com/watch?v=YrrUCSi72E8)的ByteCode。要解決這問題，我們可以簡單的使用runBlocking，它會幫助我們在Coroutine的Scope上執行．
+會發現fun前面多了一個suspend的簽名，這是用來告訴編譯器的一個標記，他會被編成[CPS](https://www.youtube.com/watch?v=YrrUCSi72E8)的ByteCode。要解決這問題，我們可以簡單的使用runBlocking，它會幫助我們Blocking現在的Thread，並提供一個\`CoroutineScope\`運行Coroutine，直到沒有Coroutine要運行才離開方法．
 
 ```text
 fun main() = runBlocking<Unit> {
