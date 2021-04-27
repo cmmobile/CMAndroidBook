@@ -30,13 +30,13 @@ Coroutine通常是主動暫停\(suspended\)讓出執行權來實現協作，因�
 
 在gradle的dependencies加入
 
-```text
+```groovy
 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8'
 ```
 
 使用Android
 
-```text
+```groovy
 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8'
 //for viewmodel
 implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
@@ -44,11 +44,13 @@ implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
 ## 簡單的開始
 
+### 第一個Coroutines
+
 簡單的執行一個Task，在Console印出Hello,World!
 
 * 使用Thread
 
-```text
+```kotlin
 fun main() {
 	thread {
 		Thread.sleep(1000L)
@@ -61,7 +63,7 @@ fun main() {
 
 * 使用Coroutine
 
-```text
+```kotlin
 fun main() {
     GlobalScope.launch {
         delay(1000L)
@@ -77,7 +79,7 @@ fun main() {
 這邊先以Coroutine範例進行討論：  
 為了讓當前的Thread可以做其他事，必須把它換成Coroutine。所以我們試著把Thread.sleep\(\)改成delay\(\)，編譯器會錯誤。
 
-```text
+```kotlin
 Suspend function 'delay' should be called only from a coroutine or another suspend function
 ```
 
@@ -85,7 +87,7 @@ Suspend function 'delay' should be called only from a coroutine or another suspe
 
 首先我們看一下delay這個方法
 
-```text
+```kotlin
 public suspend fun delay(timeMillis: Long) {
     ...
 }
@@ -93,7 +95,7 @@ public suspend fun delay(timeMillis: Long) {
 
 會發現fun前面多了一個suspend的簽名，這是用來告訴編譯器的一個標記，他會被編成[CPS](https://www.youtube.com/watch?v=YrrUCSi72E8)的ByteCode。要解決這問題，我們可以簡單的使用runBlocking，它會幫助我們Blocking現在的Thread，並提供一個\`CoroutineScope\`運行Coroutine，直到沒有Coroutine要運行才離開方法．
 
-```text
+```kotlin
 fun main() = runBlocking<Unit> {
     GlobalScope.launch {
         delay(1000L)
@@ -108,7 +110,7 @@ fun main() = runBlocking<Unit> {
 
 更好的做法是使用Join\(\)，他會等待Job結束後，才會結束整個Task\(就是這個runBlocking的Coroutine\)
 
-```text
+```kotlin
 fun main() = runBlocking {
     val job = GlobalScope.launch {
         delay(1000L)
@@ -119,5 +121,63 @@ fun main() = runBlocking {
 }
 ```
 
+### 抽出Launch方法實作之重構
 
+* 原方法
+
+```kotlin
+fun main = runBlocking {
+    val job = GlobalScope.launch {
+        delay(1000L)
+        println("World")
+    }
+    println("Hello,")
+    job.join()
+}
+```
+
+* 抽出重構後，方法名需加suspend修飾詞， 才可以在內部呼叫同樣是suspend function的delay函式 詳細內容下個章節會介紹
+
+```kotlin
+fun main = runBlocking {
+    val job = GlobalScope.launch {
+        doWorld()
+    }
+    println("Hello,")
+    job.join()
+}
+
+suspend fun doWorld() {
+    delay(1000L)
+    println("World")
+}
+```
+
+### Coroutines的生成成本是相對較輕的
+
+* 以Coroutines執行大量的工作
+
+```kotlin
+fun main() = runBlocking {
+    repeat(1000_000L) { // launch a lot of coroutines
+        launch {
+            delay(5000L)
+            print(".")
+        }
+    }
+}
+```
+
+* 改以Thread執行\(通常來說此執行是會out-of-memory\)
+
+```kotlin
+fun main() {
+    repeat(1000_000L) {
+        thread(start = true) {
+            Thread.sleep(5000L)
+            print(".")
+        }
+    }
+}
+```
 

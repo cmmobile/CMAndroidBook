@@ -10,7 +10,7 @@
 
 ### Callback
 
-```text
+```kotlin
 class LoginViewModel(){
     fun login(){
         //don't do this in prodcut code
@@ -45,7 +45,7 @@ class Respority {
 
 ### Coroutine
 
-```text
+```kotlin
 sealed class Result<out R> {
     data class Success<out T>(val data: T) : Result<T>()
     data class Error(val exception: Exception) : Result<Nothing>()
@@ -86,7 +86,7 @@ class Respority {
 
 ### Callback
 
-```text
+```kotlin
 class LoginViewModel(){
     fun login(){
         //don't do this in prodcut code
@@ -137,7 +137,7 @@ class Respority {
 
 我們暫時不管發生錯誤要怎麼處理，後面的章節會說明。
 
-```text
+```kotlin
 sealed class Result<out R> {
     data class Success<out T>(val data: T) : Result<T>()
     data class Error(val exception: Exception) : Result<Nothing>()

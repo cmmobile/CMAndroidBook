@@ -11,7 +11,7 @@ Scope指的是範圍，Coroutine作用的範圍，主要用來控制一群Corout
 
 在產生Coroutine之前，要先產生一個Scope，CoroutineScope它是一個介面，有一個參數CoroutineContext，在後面會說明它用途，現在只要知道一個Scope會包含一個Context來連結Coroutines的關係。
 
-```text
+```kotlin
 public interface CoroutineScope {
     public val coroutineContext: CoroutineContext
 }
@@ -19,7 +19,7 @@ public interface CoroutineScope {
 
 在Library的實作
 
-```text
+```kotlin
 public fun CoroutineScope(context: CoroutineContext): CoroutineScope = ContextScope(if (context[Job] != null) context else context + Job())
 
 internal class ContextScope(context: CoroutineContext) : CoroutineScope {
@@ -31,7 +31,7 @@ internal class ContextScope(context: CoroutineContext) : CoroutineScope {
 
 自己的實作
 
-```text
+```kotlin
 object : CoroutineScope {
 override val coroutineContext: CoroutineContext
     get() = Job()
@@ -41,7 +41,7 @@ override val coroutineContext: CoroutineContext
 
 不管用哪種方式，CoroutineContext都必須被指定。那如果不想指定CoroutineContext的行為怎麼辦？介面也不能是null。使用EmptyCoroutineContext代替，它是一個object class，所以不管產生幾個都是同一個實體。但建議別這麼做，因為創造了一個不能管理生命週期的Scope是沒有意義的。除非是Application等級的生命週期，當Application被殺掉，理所當然處理Coroutine的Thread正常也會消失，不用特別指定行為。
 
-```text
+```kotlin
 public object EmptyCoroutineContext : CoroutineContext, Serializable {
     ...
 }
@@ -59,7 +59,7 @@ CoroutineContext是用來定義一個Coroutine的行為的一組元素。
 
 上面說它是一組元素是因為它是可以被組合起來的
 
-```text
+```kotlin
 CoroutineScope(Job() + Dispatchers.Main + CoroutineName("name1"))
 ```
 
@@ -67,7 +67,7 @@ CoroutineScope(Job() + Dispatchers.Main + CoroutineName("name1"))
 
 為了快速使用Coroutine，我們使用runBlocking來launch或async產生一個Coroutine，因為runBlocking會阻塞目前的Thread，所以在實際產品Code千萬不要使用。
 
-```text
+```kotlin
 fun main() = runBlocking { 
     val job = this.launch(Job()) {
         println("My context is $coroutineContext}")        
@@ -78,7 +78,7 @@ fun main() = runBlocking {
 
 在launch後會回傳新的Coroutine，型別是Job，透過join\(\)使目前的Coroutine suspend。
 
-```text
+```kotlin
 fun main() = runBlocking { 
     val deferred = this.launch(Job()) {
         println("My context is $coroutineContext}")        
