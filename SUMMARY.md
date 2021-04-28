@@ -38,6 +38,8 @@
 
 ## 多執行緒
 
+* [Handler](duo-zhi-hang-xu/handler.md)
+* [Executor](duo-zhi-hang-xu/executor.md)
 * [Kotlin-Coroutine](duo-zhi-hang-xu/kotlin-coroutine/README.md)
   * [Overview](duo-zhi-hang-xu/kotlin-coroutine/overview.md)
   * [基礎](duo-zhi-hang-xu/kotlin-coroutine/ji-chu.md)

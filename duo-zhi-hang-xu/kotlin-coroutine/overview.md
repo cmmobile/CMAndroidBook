@@ -2,7 +2,9 @@
 
 ## 為什麼要使用
 
-如果我們在Main Thread執行費時的工作或是API的請求，將會造成Main Thread被主塞，導致App被凍結。所以必須將這些工作移至其他Thread執行，而Coroutine是一個簡單管理非同步的操作的套件。不像被棄用的AsyncTask或是直接產生一個新的Thread，這些工作如果要取消，都要做複雜的操作。
+為了避免耗時的工作阻塞Main Thread，導致App的UI畫面卡頓、刷新頻率太低，影響使用者體驗。必須將這些跟UI沒有相關的工作，交給其他的執行緒處理，讓Main Thread專心處理UI的刷新，保持每隔16毫秒就可以更新一幀，也就是一秒可以刷60幀（遊戲常聽到的60fps）。
+
+如果我們在Main Thread執行費時的工作或是API的請求，將會造成Main Thread被主塞，導致App被凍結。超過5秒，就會產生ANR\(Application Not Responding\)。
 
 ## Callback vs Coroutine
 
@@ -177,6 +179,10 @@ class Respority {
     }
 }
 ```
+
+當層級越來多會發現Callback的寫法會導致難以閱讀，這就是常說的Callbacke Hell。
+
+如果改成Coroutine的寫法，就會發現輕鬆許多。
 
 ## 參考
 
