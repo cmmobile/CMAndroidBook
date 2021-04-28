@@ -7,11 +7,6 @@
 * [工具篇](xin-ren-xun-lian/gong-ju-pian.md)
 * [Coding Style](xin-ren-xun-lian/code-style.md)
 * [架構](xin-ren-xun-lian/jia-gou.md)
-* [Kotlin-Coroutine](xin-ren-xun-lian/kotlin-coroutine/README.md)
-  * [Overview](xin-ren-xun-lian/kotlin-coroutine/overview.md)
-  * [基礎](xin-ren-xun-lian/kotlin-coroutine/ji-chu.md)
-  * [Suspend修飾符](xin-ren-xun-lian/kotlin-coroutine/xian-kuang.md)
-  * [Scope和Context](xin-ren-xun-lian/kotlin-coroutine/scope-he-context.md)
 
 ## 基礎課程-預習
 
@@ -40,6 +35,17 @@
   * [新增、刪除、切換Branch](ji-chu-ke-cheng/ide-git-chang-yong-cao-zuo/xin-zeng-shan-chu-qie-huan-branch.md)
   * [合併Branch](ji-chu-ke-cheng/ide-git-chang-yong-cao-zuo/he-bing-branch.md)
   * [解衝突](ji-chu-ke-cheng/ide-git-chang-yong-cao-zuo/jie-chong-tu.md)
+
+## 多執行緒
+
+* [Kotlin-Coroutine](duo-zhi-hang-xu/kotlin-coroutine/README.md)
+  * [Overview](duo-zhi-hang-xu/kotlin-coroutine/overview.md)
+  * [基礎](duo-zhi-hang-xu/kotlin-coroutine/ji-chu.md)
+  * [Suspend修飾符](duo-zhi-hang-xu/kotlin-coroutine/xian-kuang.md)
+  * [Scope和Context](duo-zhi-hang-xu/kotlin-coroutine/scope-he-context.md)
+* [習題](duo-zhi-hang-xu/xi-ti.md)
+* [攻防題目](duo-zhi-hang-xu/gong-fang-ti-mu.md)
+* [參考資源](duo-zhi-hang-xu/can-kao-zi-yuan.md)
 
 ## 大大講義\_1 <a id="da-da-jiang-yi"></a>
 
