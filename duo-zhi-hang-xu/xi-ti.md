@@ -10,7 +10,7 @@ description: 依照順序完成習題，千萬不要直接跳到二。
 
 ### 習題二
 
-目前有四種API要發送，分別為UserName、Company、Guid、Detail。其中UseName、Company、Guid要同時執行，當這三道API執行完畢後，才會執行Detail。
+目前有四種API要發送，分別為[UserName](https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/company_first_name.json)、[Company](https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/company_name.json)、[Guid](https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/guid.json)、Detail。其中UseName、Company、Guid要同時執行，當這三道API執行完畢後，才會執行Detail。
 
 Detail的API會依照UserName、Company、Guid的結果依照順序組合而成，  
 請以三道API回傳內容取代{}，來多次執行Detail API請求\(預計共要執行五次喔\)。
