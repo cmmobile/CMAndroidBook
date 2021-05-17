@@ -20,5 +20,18 @@ API模板：https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/ma
 實際案例：  
 [https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/Chasity\_EXOTECHNO\_01fe1948-4210-4082-9235-5051d3cdeb96.json](https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/Chasity_EXOTECHNO_01fe1948-4210-4082-9235-5051d3cdeb96.json)
 
-以上以Coroutines實作，答案要顯示在螢幕上或Console。
+以上以Coroutines實作。
+
+請輸出每一次API請求的URL及Response，  
+並於每個請求輸出間間隔一行，  
+答案要顯示在螢幕上或Console，  
+以下為輸出Console輸出範例
+
+```text
+RequestUrl: https://...
+Response: { ... }
+
+RequestUrl: https://...
+Response: [ ... ]
+```
 
