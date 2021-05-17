@@ -10,13 +10,15 @@ description: 依照順序完成習題，千萬不要直接跳到二。
 
 ### 習題二
 
-目前有四道API要發送，分別為[API-1](https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/company_first_name.json)、[API-2](https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/company_detail.json)、[API-3](https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/api_test_one.json)、[API-4](%20https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/api_test_two.json)。其中API-1、API-3、API-4會同時執行，當API-1、API-3、API-4執行完畢後，才會執行API-2。
+目前有四種API要發送，分別為UserName、Company、Guid、Detail。其中UseName、Company、Guid要同時執行，當這三道API執行完畢後，才會執行Detail。
 
-API-2的參數，會依照API-1、API-3、API-4的結果依照順序組合而成。例如：
+Detail的API會依照UserName、Company、Guid的結果依照順序組合而成，  
+請以三道API回傳內容取代{}，來多次執行Detail API請求\(預計共要執行五次喔\)。
 
-拿著被組合的結果，來執行API-2。
+API模板：https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/{UserName}\_{Company}\_{Guid}.json
 
-合併來組出參數結果來執行，取得最後的答案。
+實際案例：  
+[https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/Chasity\_EXOTECHNO\_01fe1948-4210-4082-9235-5051d3cdeb96.json](https://raw.githubusercontent.com/cmmobile/AndroidApiFakeResponse/master/Chasity_EXOTECHNO_01fe1948-4210-4082-9235-5051d3cdeb96.json)
 
 以上以Coroutines實作，答案要顯示在螢幕上或Console。
 
