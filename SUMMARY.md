@@ -37,6 +37,7 @@
 ## Coroutine <a id="duo-zhi-hang-xu"></a>
 
 * [Kotlin-Coroutine](duo-zhi-hang-xu/kotlin-coroutine/README.md)
+  * [並發與並行](duo-zhi-hang-xu/kotlin-coroutine/bing-fa-yu-bing-hang.md)
   * [Overview](duo-zhi-hang-xu/kotlin-coroutine/overview.md)
   * [基礎](duo-zhi-hang-xu/kotlin-coroutine/ji-chu.md)
   * [Suspend修飾符](duo-zhi-hang-xu/kotlin-coroutine/xian-kuang.md)
