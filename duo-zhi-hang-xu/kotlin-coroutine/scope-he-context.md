@@ -80,7 +80,7 @@ fun main() = runBlocking {
 
 ```kotlin
 fun main() = runBlocking { 
-    val deferred = this.launch(Job()) {
+    val deferred = this.async(Job()) {
         println("My context is $coroutineContext}")        
     }
     val result = deferred.await()

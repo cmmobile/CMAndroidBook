@@ -2,7 +2,13 @@
 
 ## 為什麼要使用
 
-為了避免耗時的工作阻塞Main Thread，導致App的UI畫面卡頓、刷新頻率太低，影響使用者體驗。必須將這些跟UI沒有相關的工作，交給其他的執行緒處理，讓Main Thread專心處理UI的刷新，保持每隔16毫秒就可以更新一幀，也就是一秒可以刷60幀（遊戲常聽到的60fps）。
+* 解決[Callback Hell](http://callbackhell.com/)，讓我們可以更直觀的閱讀。
+* 在Android上切換Thread更加的方便，比起runOnUiThread、[Handler](http://givemepass-blog.logdown.com/posts/296606-how-to-use-a-handler)更加方便。
+* 比起Thread更加輕量，在下一章會說明。
+
+## 為什麼要切換Thread?
+
+如果所有工作都在Main Threa執行會導致App的UI畫面卡頓、刷新頻率太低，影響使用者體驗。必須將這些跟UI沒有相關的工作，交給其他的執行緒處理，讓Main Thread專心處理UI的刷新，保持每隔16毫秒就可以更新一幀，也就是一秒可以刷60幀（遊戲常聽到的60fps）。
 
 如果我們在Main Thread執行費時的工作或是API的請求，將會造成Main Thread被主塞，導致App被凍結。超過5秒，就會產生ANR\(Application Not Responding\)。
 
