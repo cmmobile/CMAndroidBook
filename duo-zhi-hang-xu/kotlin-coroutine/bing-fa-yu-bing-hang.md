@@ -1,5 +1,5 @@
 ---
-description: '並發: Parallelism, 並行: Concurrency'
+description: '並發:Concurrency , 並行: Parallelism'
 ---
 
 # 並發與並行
