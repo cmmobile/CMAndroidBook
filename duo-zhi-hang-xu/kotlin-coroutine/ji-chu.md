@@ -14,15 +14,15 @@
 
 **又稱：可以中斷及繼續執行的函式呼叫**
 
-這句話是在說，允許函式被暫停\(suspended\)執行之後再回復\(resumed\)執行，而暫停執行的函式，狀態允許被保留，復原後再以暫停時的狀態繼續執行．
+這句話是在說，允許函式被暫停(suspended)執行之後再回復(resumed)執行，而暫停執行的函式，狀態允許被保留，復原後再以暫停時的狀態繼續執行．
 
-![](../../.gitbook/assets/1_mxsd2ch9qlnycfyht0eqrq.png)
+![](../../.gitbook/assets/1\_mxsd2ch9qlnycfyht0eqrq.png)
 
 根據上圖解釋，當main thread執行到function A並且需要等IO thread 耗時處理的結果，那我先暫停 function A，協調讓出main thread讓main thread先去執行其他的事情，等到IO thread的耗時處理結束後得到結果，再回復function A 繼續執行。
 
 ### 概念三
 
-Coroutine通常是主動暫停\(suspended\)讓出執行權來實現協作，因此它的本質就是在討論程序控制流程的機制。
+Coroutine通常是主動暫停(suspended)讓出執行權來實現協作，因此它的本質就是在討論程序控制流程的機制。
 
 與執行緒最大的差異在於，以任務的角度來看，執行緒一旦開始執行就不會暫停，直到任務結束。整個過程是連續的。執行緒之間是搶佔式的調度，因此不存在協作問題。
 
@@ -74,10 +74,10 @@ fun main() {
 }
 ```
 
-以上兩個效果是一樣的，都是透過Thread.sleep\(2000L\)把當前的Thread Blocking。當前的Thread不能去做其他事。
+以上兩個效果是一樣的，都是透過Thread.sleep(2000L)把當前的Thread Blocking。當前的Thread不能去做其他事。
 
-這邊先以Coroutine範例進行討論：  
-為了讓當前的Thread可以做其他事，必須把它換成Coroutine。所以我們試著把Thread.sleep\(\)改成delay\(\)，編譯器會錯誤。
+這邊先以Coroutine範例進行討論：\
+為了讓當前的Thread可以做其他事，必須把它換成Coroutine。所以我們試著把Thread.sleep()改成delay()，編譯器會錯誤。
 
 ```kotlin
 Suspend function 'delay' should be called only from a coroutine or another suspend function
@@ -108,7 +108,7 @@ fun main() = runBlocking<Unit> {
 
 從上面的範例，我們使用delay來讓Coroutine延後結束，並不是一個很好的寫法，因為他並沒有清楚的說明Task目的（因為要故意等待，才能阻止整個程式被關閉）。
 
-更好的做法是使用Join\(\)，他會等待Job結束後，才會結束整個Task\(就是這個runBlocking的Coroutine\)
+更好的做法是使用Join()，他會等待Job結束後，才會結束整個Task(就是這個runBlocking的Coroutine)
 
 ```kotlin
 fun main() = runBlocking {
@@ -136,7 +136,9 @@ fun main = runBlocking {
 }
 ```
 
-* 抽出重構後，方法名需加suspend修飾詞， 才可以在內部呼叫同樣是suspend function的delay函式 詳細內容下個章節會介紹
+* 抽出重構後，方法名需加suspend修飾詞，\
+  才可以在內部呼叫同樣是suspend function的delay函式\
+  詳細內容下個章節會介紹
 
 ```kotlin
 fun main = runBlocking {
@@ -168,7 +170,7 @@ fun main() = runBlocking {
 }
 ```
 
-* 改以Thread執行\(通常來說此執行是會out-of-memory\)
+* 改以Thread執行(通常來說此執行是會out-of-memory)
 
 ```kotlin
 fun main() {
@@ -180,4 +182,3 @@ fun main() {
     }
 }
 ```
-

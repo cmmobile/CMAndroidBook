@@ -4,7 +4,12 @@
 
 ## 新人訓練
 
-* [工具篇](xin-ren-xun-lian/gong-ju-pian.md)
+* [工具篇](xin-ren-xun-lian/gong-ju-pian/README.md)
+  * [IDE](xin-ren-xun-lian/gong-ju-pian/ide.md)
+  * [Firebase](xin-ren-xun-lian/gong-ju-pian/firebase.md)
+  * [Flurry](xin-ren-xun-lian/gong-ju-pian/flurry.md)
+  * [Postman](xin-ren-xun-lian/gong-ju-pian/postman.md)
+  * [Swagger](xin-ren-xun-lian/gong-ju-pian/swagger.md)
 * [Coding Style](xin-ren-xun-lian/code-style.md)
 * [架構](xin-ren-xun-lian/jia-gou.md)
 
@@ -21,7 +26,7 @@
   * [程式練習題](ji-chu-ke-cheng-yu-xi/kotlin-lian-xi/cheng-shi-lian-xi-ti.md)
   * [參考](ji-chu-ke-cheng-yu-xi/kotlin-lian-xi/can-kao.md)
 
-## 建立第一個App <a id="ji-chu-ke-cheng"></a>
+## 建立第一個App <a href="#ji-chu-ke-cheng" id="ji-chu-ke-cheng"></a>
 
 * [目標](ji-chu-ke-cheng/mu-biao.md)
 * [建立專案](ji-chu-ke-cheng/jian-li-zhuan-an.md)
@@ -34,7 +39,7 @@
   * [合併Branch](ji-chu-ke-cheng/ide-git-chang-yong-cao-zuo/he-bing-branch.md)
   * [解衝突](ji-chu-ke-cheng/ide-git-chang-yong-cao-zuo/jie-chong-tu.md)
 
-## Coroutine <a id="duo-zhi-hang-xu"></a>
+## Coroutine <a href="#duo-zhi-hang-xu" id="duo-zhi-hang-xu"></a>
 
 * [Kotlin-Coroutine](duo-zhi-hang-xu/kotlin-coroutine/README.md)
   * [並發與並行](duo-zhi-hang-xu/kotlin-coroutine/bing-fa-yu-bing-hang.md)
@@ -45,4 +50,3 @@
 * [習題](duo-zhi-hang-xu/xi-ti.md)
 * [攻防題目](duo-zhi-hang-xu/gong-fang-ti-mu.md)
 * [參考資源](duo-zhi-hang-xu/can-kao-zi-yuan.md)
-

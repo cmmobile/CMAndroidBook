@@ -17,13 +17,13 @@ description: 介紹每一個架構之間的差異，並說明公司目前採用�
 
 * 理論上
 
-> The goal of software architecture is to minimize the human resources required to build and maintain the required system. 
+> The goal of software architecture is to minimize the human resources required to build and maintain the required system.&#x20;
 >
 > 軟體架構的目的是最小化建置與維護「需求系統」所需要的人力資源。
 
 * 實務上
 
-讓工程師在開發與之後的維護上能夠花費更少精力，提升軟體開發的效率。如果只是要解決問題，那麼任何架構都可以做到。但好的架構能夠讓改變的成本維持在低處。如果一開始挑一個簡單的架構上路，初期的確成本很低，但是軟體的真正挑戰要從交付後才開始，維護、修改的成本只會逐漸增高，直到最後整個系統動彈不得。如下圖，B相較於A為較好的架構。 ![](images/CostOfChange.png)
+讓工程師在開發與之後的維護上能夠花費更少精力，提升軟體開發的效率。如果只是要解決問題，那麼任何架構都可以做到。但好的架構能夠讓改變的成本維持在低處。如果一開始挑一個簡單的架構上路，初期的確成本很低，但是軟體的真正挑戰要從交付後才開始，維護、修改的成本只會逐漸增高，直到最後整個系統動彈不得。如下圖，B相較於A為較好的架構。&#x20;
 
 ![](../.gitbook/assets/costofchange.png)
 
@@ -38,7 +38,7 @@ description: 介紹每一個架構之間的差異，並說明公司目前採用�
 ![](../.gitbook/assets/cleanarchitecture.jpg)
 
 {% hint style="info" %}
-[**Clean Architecture**](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) **是由 Robert C. Martin\(Uncle Bob\) 在 2012 時所提出的概念。**
+[**Clean Architecture**](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) **是由 Robert C. Martin(Uncle Bob) 在 2012 時所提出的概念。**
 {% endhint %}
 
 #### 原則上分為四個層級：
@@ -79,7 +79,7 @@ Frameworks & Drivers 是 platform 相關的程式碼，對 Android 來說就是 
 3. 高度可擴充性
 4. 高度可測試性
 
-## MVC \(Model-View-Controller\)
+## MVC (Model-View-Controller)
 
 由 Trygve Reenskaug 在 1978 年提出
 
@@ -111,7 +111,7 @@ View 元件是你的資料的視覺表現。這是 View 唯一的職責。 View 
 
 MVC 的一切看起來都很美好。我們的關注點分離，而且訊息的傳輸非常明確。但 MVC 卻是在 Android 最少被討論的架構之一。
 
-當我們在考慮 Controller \(處理使用者輸入\)的職責和 View \(顯示資料\)的職責時，你會發現這些責任在 Android 中都被同一個東西處理，通常是你的 Activity 或是 Fragment。如下圖：
+當我們在考慮 Controller (處理使用者輸入)的職責和 View (顯示資料)的職責時，你會發現這些責任在 Android 中都被同一個東西處理，通常是你的 Activity 或是 Fragment。如下圖：
 
 ![](../.gitbook/assets/mvcandroid.png)
 
@@ -125,7 +125,7 @@ MVC 的一切看起來都很美好。我們的關注點分離，而且訊息的�
 
 把 Controller/UI 邏輯移出 Activity 和 Fragment。
 
-## MVP \(Model-View-Presenter\)
+## MVP (Model-View-Presenter)
 
 為了把 UI 和業務邏輯移出 Activity 和 Fragment，我們創造了有一點不同的訊息流程。促成了 MVP 的誕生。如此一來，就能達成關注點分離，而且我們可以單元測試所有元件。
 
@@ -272,7 +272,7 @@ class LoginPresenter(
 
 這裡列出的 MVC、MVP 和 MVVM 都導致了下一個的產生。MVP 作為我們繼續討論 MVVM 的基底的原因是因為它們只有些微的差距：Presenter 不必知道有關於 View 的任何事情。
 
-## MVVM \(Model-View-ViewModel\)
+## MVVM (Model-View-ViewModel)
 
 在 MVP 中，我們需要 Presenter 明確的告訴 View 要怎麼顯示。但在 MVVM 中，我們暴露出 View 應該顯示的狀態的事件流，讓需要顯示這個狀態的 View 來觀察這些狀態。
 
@@ -375,9 +375,8 @@ class LoginViewModel(
 
 ## More
 
-* MVI \(Model-View-Intent\)
-* MVU \(Model-View-Update\)
-* VIPER \(View Interactor Presenter Entity Routing\)
+* MVI (Model-View-Intent)
+* MVU (Model-View-Update)
+* VIPER (View Interactor Presenter Entity Routing)
 * FLUX
 * Redux
-
