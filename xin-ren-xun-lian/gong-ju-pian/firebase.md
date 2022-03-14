@@ -16,8 +16,13 @@ RD要執行Firebase的引入及程式碼才會實現功能，[請參考](https:/
 
 ![](https://i.imgur.com/RuoSOT8.png)
 
-* 點擊"指定其他應用程式"，選擇指定推播的平台(通常雙平台都會選)，選完後會出現在藍色框框，點下一步 ![](https://i.imgur.com/sH80fmQ.png)
-* 輸入排定的時間，點審查，就完成啦，是不是很簡單 p.s.審查一旦點下去，就會按照排定時間直接送出喔! 可以先儲存草稿 ![](https://i.imgur.com/Q6oepsK.png)
+* 點擊"指定其他應用程式"，選擇指定推播的平台(通常雙平台都會選)，選完後會出現在藍色框框，點下一步
+
+![](https://i.imgur.com/sH80fmQ.png)
+
+* 輸入排定的時間，點審查，就完成啦，是不是很簡單 p.s.審查一旦點下去，就會按照排定時間直接送出喔! 可以先儲存草稿
+
+![](https://i.imgur.com/Q6oepsK.png)
 
 ![](https://i.imgur.com/iDKDccX.png)
 
@@ -129,8 +134,6 @@ RD要執行Firebase的引入及程式碼才會實現功能，[請參考](https:/
 ![](https://i.imgur.com/YhjG6J9.png)
 
 * 版本可以多選
-
-&#x20;
 
 ![](https://i.imgur.com/D2XpUYk.png)
 

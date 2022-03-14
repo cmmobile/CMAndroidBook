@@ -4,7 +4,7 @@
 
 ## 新人訓練
 
-* [工具篇](xin-ren-xun-lian/gong-ju-pian/README.md)
+* [工具篇](xin-ren-xun-lian/gong-ju-pian.md)
   * [IDE](xin-ren-xun-lian/gong-ju-pian/ide.md)
   * [Firebase](xin-ren-xun-lian/gong-ju-pian/firebase.md)
   * [Flurry](xin-ren-xun-lian/gong-ju-pian/flurry.md)
