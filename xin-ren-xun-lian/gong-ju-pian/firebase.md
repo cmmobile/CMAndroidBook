@@ -6,7 +6,7 @@ RD要執行Firebase的引入及程式碼才會實現功能，[請參考](https:/
 
 ### <mark style="background-color:orange;">1.推播</mark>
 
-**1-1一般推播**
+<mark style="color:blue;">**1-1一般推播**</mark>
 
 * 打開[Firebase](https://firebase.google.com)，左上方點選對應專案（沒看到就是沒有權限要請PO開）&#x20;
 
@@ -26,7 +26,7 @@ RD要執行Firebase的引入及程式碼才會實現功能，[請參考](https:/
 
 ![](https://i.imgur.com/iDKDccX.png)
 
-**1-2跳轉網頁推播**
+<mark style="color:blue;">**1-2跳轉網頁推播**</mark>
 
 * 前面步驟一樣，不一樣的地方在於要設定其他選項設定一些參數，範本如下&#x20;
 
@@ -39,14 +39,18 @@ RD要執行Firebase的引入及程式碼才會實現功能，[請參考](https:/
 >
 > commonParameter裡面要用json格式放入跳轉的網址 {"webUrl":"http://www.cmoney.tw/"}
 
-**1-3預先測試**
+<mark style="color:blue;">**1-3預先測試**</mark>
 
 不知道大家在新增通知時有沒有發現右邊有一個測試通知，究竟那是幹嘛用的呢？ 其實就是跟字面上一樣可以給我們測試用的，在這個通知還沒發建立完之前我們可以先在測試機或虛擬機上測試
 
-* 點擊測試通知，他會要求你要輸入FCM憑證，那這憑證是從哪裏拿呢？點選連結會有對應的教學 ![](https://i.imgur.com/kslRxKv.png)
-* 依照指示在在專案中加入程式碼，就會log出來，再將長長的一串憑證貼上去即可 ![](https://i.imgur.com/EP2rbHN.png)
+* 點擊測試通知，他會要求你要輸入FCM憑證，那這憑證是從哪裏拿呢？點選連結會有對應的教學&#x20;
+* 依照指示在在專案中加入程式碼，就會log出來，再將長長的一串憑證貼上去即可&#x20;
 
-**1-4深度連結推播**
+![](https://i.imgur.com/EP2rbHN.png)
+
+![](https://i.imgur.com/kslRxKv.png)
+
+<mark style="color:blue;">**1-4深度連結推播**</mark>
 
 * 依樣去設定其他選項的參數
 
@@ -62,8 +66,14 @@ RD要執行Firebase的引入及程式碼才會實現功能，[請參考](https:/
 
 簡單來說就是可以透過PM設定的參數告訴我們打開APP時要跳到哪一個畫面
 
-* 到dynamic links頁面，點擊新增動態連結 ![](https://i.imgur.com/BjVm4Zz.png)
-* 系統自動幫你建立一個短連結網址，點下一步 ![](https://i.imgur.com/OjxUh2I.png)
+* 到dynamic links頁面，點擊新增動態連結
+
+![](https://i.imgur.com/BjVm4Zz.png)
+
+* 系統自動幫你建立一個短連結網址，點下一步
+
+![](https://i.imgur.com/OjxUh2I.png)
+
 * 將要跳轉畫面的參數用JSON格式寫在深層連結網址，並為這個深度連結命名 `？以前得網址是預設網址，實際參數會看？以後的`&#x20;
 
 ![](https://i.imgur.com/G7ycpVX.png)
@@ -84,7 +94,7 @@ RD要執行Firebase的引入及程式碼才會實現功能，[請參考](https:/
 
 有兩種設定方式：
 
-**3-1. 一個參數名稱搭配json字串**
+<mark style="color:blue;">**3-1. 一個參數名稱搭配json字串**</mark>
 
 ![](https://i.imgur.com/onUWkAD.png)
 
@@ -92,13 +102,17 @@ RD要執行Firebase的引入及程式碼才會實現功能，[請參考](https:/
 >
 > * PM要學習JSON字串建立
 
-![](https://i.imgur.com/o5xjHnb.png) ＜做法＞
+&#x20;
+
+![](https://i.imgur.com/o5xjHnb.png)
+
+＜做法＞
 
 * 先點擊新增參數，並輸入參數名稱和內容（參數名稱要用英文，然後盡量好好設定，工程師會依照設定的參數名稱去抓資料內容），內容就是將要傳送的資料用JSON格式字串表示
 * 可以點擊左下方新增說明，將參數內容表示的意義放在上面方便其他人理解（可設可不設）
 * 如果有需要這個參數只有某些版本(condition，下面會提到)可以接收到的話，點擊又上方的新增條件值，並輸入在那個條件裡要放什麼參數
 
-**3-2. 一個資料夾裡面有多個參數，每個參數只有一個值**
+<mark style="color:blue;">**3-2. 一個資料夾裡面有多個參數，每個參數只有一個值**</mark>
 
 ![](https://i.imgur.com/Vm5Chja.png)
 
