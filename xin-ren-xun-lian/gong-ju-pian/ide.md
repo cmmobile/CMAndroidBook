@@ -1,6 +1,6 @@
 # IDE
 
-#### <mark style="color:blue;">**快捷鍵**</mark>
+#### <mark style="background-color:orange;">**快捷鍵**</mark>
 
 * **windows**
 
@@ -35,19 +35,19 @@ ctrl+option+T  (Win+Alt+T)： 一段Code 選取後可以快速用IF Else  或是
 ctr+option+M  (Win+Alt+M)： 把一段code快速輸出成Function
 ```
 
-#### <mark style="color:blue;">**Setting**</mark>
+#### <mark style="background-color:orange;">**Setting**</mark>
 
 * inlay hints - 型別提示&#x20;
 * livetemplate - 客製化模板&#x20;
 * gradle - jdk版本
 
-<mark style="color:blue;">**Plugins**</mark>
+<mark style="background-color:orange;">**Plugins**</mark>
 
 * adb // 模擬器相關動作執行&#x20;
 * markdown (md)&#x20;
 * Progress Bar// 就是build的時候比較療癒
 
-<mark style="color:blue;">**Debug**</mark>
+<mark style="background-color:orange;">**Debug**</mark>
 
 * #### Debug/Attach App <a href="#1-debugattach-app" id="1-debugattach-app"></a>
 
