@@ -7,11 +7,10 @@ description: 介紹每一個架構之間的差異，並說明公司目前採用�
 ## 目錄
 
 * Why
-* Clean Architecture
 * MVC
 * MVP
 * MVVM
-* More
+* Clean Architecture
 
 ## Why
 
@@ -33,51 +32,7 @@ description: 介紹每一個架構之間的差異，並說明公司目前採用�
 
 ![](../.gitbook/assets/android-mvp-architecture.png)
 
-## Clean Architecture
-
-![](../.gitbook/assets/cleanarchitecture.jpg)
-
-{% hint style="info" %}
-[**Clean Architecture**](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) **是由 Robert C. Martin(Uncle Bob) 在 2012 時所提出的概念。**
-{% endhint %}
-
-#### 原則上分為四個層級：
-
-1. Entities
-2. Use Cases
-3. Interface Adapters
-4. Frameworks & Drivers
-
-### Entities
-
-Entities 指的是我們的核心物件與基礎商業邏輯，像是 user object、password policy、payment api 等跟應用程式無關的核心功能。另一個重點是 Entities 應該是很少變動而且不需依賴於其他任何層級的存在。
-
-### Use Cases
-
-Use Cases 指的是跟我們應用程式相關的商業邏輯。大家可能會覺得跟 Entities 實在是有點接近。
-
-Use Cases 跟 Entities 的差別在於：Use Cases 多半會再透過多個 Entities 來達成目的，比如說變更密碼的 Use Case 可能要先檢查新密碼是否符合規範、二次輸入的新密碼是否一致，都成功才送出變更密碼的 api。 諸如此類跟 flow 相關的程式碼都屬於這一層級。
-
-Use Cases 另一個好處是可以限制了 Entities 的存取，減少外部誤用的機會也提高了可讀與安全性。
-
-### Interface Adapters
-
-Interface Adapters 就像我們的 `RecyclerView.Adapter` 一樣，是把二層不一樣的元件，資料與畫面，透過這個中介層完美的介接融合在一起。
-
-我們之後會介紹的 MVP、MVVM 的 Presenter 跟 ViewModel 就是屬於 Adapter 的角色，介接融合 Android View（Activity） 跟 Use Cases 的地方。
-
-除了介接融合 function 的呼叫以外，也可以做 data class 的介接，如果對於業務邏輯跟顯示所需要的資料內容不一樣，都可以在 Adapter 這層做轉換。
-
-### Frameworks & Drivers
-
-Frameworks & Drivers 是 platform 相關的程式碼，對 Android 來說就是 Activity 、View 、 xml 或是 RecyclerView.Adapter 等純 UI 相關的程式碼，因為邏輯被拆分到不同的層面，所以通常只會有簡單的畫面呈現以及依據不同的狀態做不同的更新，這一層也不會知道太多業務邏輯，所有事件都會傳遞給 Interface Adapters 做進一步的運算。
-
-#### 我們要產出的程式碼擁有以下特點：
-
-1. 關注點分離
-2. 高度可維護性
-3. 高度可擴充性
-4. 高度可測試性
+####
 
 ## MVC (Model-View-Controller)
 
@@ -157,25 +112,21 @@ class LoginContract {
 
 * Model
 
-在這個簡單例子中，我們使用儲存在記憶體中的物件。
-
-需要注意的是：Model 不具有其他任何元件的參考。
-
 ```kotlin
-class LoginRepository : LoginModel {
+interface LoginRepository {
+    fun login(email: String, password: String): LoginState
+    fun logout(): LoginState
+}
 
-    private var loginAccount: Account? = null
-
-    override fun login(email: String, password: String) {
-        loginAccount = Account(email, password)
+class LoginRepositoryImpl : LoginRepository {
+    override fun login(email: String, password: String): LoginState {
+        // do login
+        return LoginState.Login(email)
     }
 
-    override fun logout() {
-        loginAccount = null
-    }
-
-    override fun getLoginAccount(): Account? {
-        return loginAccount
+    override fun logout(): LoginState {
+        // do logout
+        return LoginState.Logout
     }
 }
 ```
@@ -188,41 +139,50 @@ View 只需要做兩件事：
 2. 實現 Contract 的 View 介面，來顯示資料。
 
 ```kotlin
-class MvpActivity : AppCompatActivity(), LoginContract.View {
-    private val presenter = LoginPresenter(this, LoginRepository())
+class MvpActivity : ViewBindingBaseActivity<ActivityMvpBinding>(), LoginContract.View {
+    override val viewBindingFactory: (layoutInflater: LayoutInflater) -> ActivityMvpBinding
+        get() = ActivityMvpBinding::inflate
+
+    private val presenter: LoginContract.Presenter by lazy {
+        LoginPresenter(this, LoginRepositoryImpl())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        login_button.setOnClickListener {
-            // ...
-            presenter.login(email, password)
+        // 登入
+        binding.loginButton.setOnClickListener {
+            presenter.login("email", "password")
         }
-
-        logout_button.setOnClickListener {
-            // ...
+        // 登出
+        binding.logoutButton.setOnClickListener {
             presenter.logout()
         }
-
+        // 通知viewcreate
         presenter.viewCreated()
     }
 
-    override fun onDestroy() {
-        presenter.viewDestroyed()
-        super.onDestroy()
+    override fun showLoginState(loginState: LoginState) {
+        when (loginState) {
+            is LoginState.Login -> {
+                Toast.makeText(this, "登入成功 ${loginState.loginEmail}", Toast.LENGTH_SHORT).show()
+            }
+            is LoginState.Logout -> {
+                Toast.makeText(this, "登出掰掰", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
-    override fun showLoginState(loginState: LoginState) {
-        // show login state
+    override fun onDestroy() {
+        super.onDestroy()
+        // 通知view destroy
+        presenter.viewDestroyed()
     }
 }
 ```
 
 * Presenter
 
-Presenter 要實現 Contract 的 Presenter 介面，在需要的時候呼叫 View 的方法，在 View 被銷毀時執行資源釋放來避免記憶體洩漏。
-
-Presenter 同時擁有 View 和 Model 的參考。
+LoginPresenter要實現 Contract 的 Presenter 介面，Presenter 同時擁有 View 和 Model 的參考。
 
 ```kotlin
 class LoginPresenter(
@@ -268,9 +228,6 @@ class LoginPresenter(
 * Presenter 處理所有使用者輸入和畫面邏輯
 * 所有元件有良好的切割和測試性
 * 如果你覺得這夠好了，那就使用 MVP！
-* 和 MVVM 的差別？
-
-這裡列出的 MVC、MVP 和 MVVM 都導致了下一個的產生。MVP 作為我們繼續討論 MVVM 的基底的原因是因為它們只有些微的差距：Presenter 不必知道有關於 View 的任何事情。
 
 ## MVVM (Model-View-ViewModel)
 
@@ -284,6 +241,32 @@ class LoginPresenter(
 
 基本上和 MVP 的 Model 一樣
 
+* ViewModel
+
+ViewModel 和 Presenter 非常相似，但有幾個不同點：
+
+1. 我們不再有 View 的參考，只剩下 Model 的參考
+2. 我們藉由StateFlow暴露出 View 的狀態
+3. 我們可以在初始化時獲取資料，而不是由 View 建立時觸發。
+
+```kotlin
+class LoginViewModel(
+    private val repository: LoginRepository
+) : ViewModel() {
+
+    // stateFlow必須設置初始值，如果不想對此作設置，可以透過將類別改成nullable
+    private val _loginStateFlow = MutableStateFlow<LoginState?>(null)
+    val loginStateFlow: StateFlow<LoginState?> = _loginStateFlow
+
+    fun login(email: String, password: String) {
+        _loginStateFlow.value = repository.login(email, password)
+    }
+
+    fun logout() {
+        _loginStateFlow.value = repository.logout()
+    }
+```
+
 * View
 
 在 View 中我們需要：
@@ -292,72 +275,92 @@ class LoginPresenter(
 2. 從 ViewModel 觀察 View 狀態的變化
 
 ```kotlin
-class MvvmActivity : AppCompatActivity(R.layout.activity_login) {
+class MvvmActivity : ViewBindingBaseActivity<ActivityMvvmBinding>() {
+    override val viewBindingFactory: (layoutInflater: LayoutInflater) -> ActivityMvvmBinding
+        get() = ActivityMvvmBinding::inflate
 
-    private lateinit var viewModel: LoginViewModel
+    private lateinit var loginViewModel: LoginViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loginViewModel =
+            ViewModelProvider(this, LoginViewModelFactory()).get(LoginViewModel::class.java)
 
-        login_button.setOnClickListener {
-            // ...
-            viewModel.login(email, password)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                loginViewModel.loginStateFlow.collectLatest {  loginState ->
+                    showToast(loginState?:return@collectLatest)
+                }
+            }
         }
 
-        logout_button.setOnClickListener {
-            // ...
-            viewModel.logout()
+        // 登入
+        binding.loginButton.setOnClickListener {
+            loginViewModel.login("email", "password")
         }
 
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        viewModel.loginState.observe(this, Observer { loginState ->
-            showLoginState(loginState)
-        })
+        // 登出
+        binding.logoutButton.setOnClickListener {
+            loginViewModel.logout()
+        }
+        
+    }
+
+    private fun showToast(loginState:LoginState){
+        when (loginState) {
+            is LoginState.Login -> {
+                Toast.makeText(this, "登入成功", Toast.LENGTH_SHORT).show()
+            }
+            is LoginState.Logout -> {
+                Toast.makeText(this, "登出掰掰", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
 ```
 
-* ViewModel
+* repeatOnLifeCycle
 
-ViewModel 和 Presenter 非常相似，但有幾個不同點：
+他是一個suspend方法，會接受一個生命周期的狀態作為參數&#x20;
 
-1. 我們不再有 View 的參考，只剩下 Model 的參考
-2. 我們藉由 LiveData 暴露出 View 的狀態
-3. 我們可以在初始化時獲取資料，而不是由 View 建立時觸發。
+生命週期到該狀態時，會建立一個coroutine，並執行區塊中的代碼;&#x20;
 
-```kotlin
+而當生命週期低於該狀態時，會自動取消coroutine
+
+![](../.gitbook/assets/image.png)
+
+* Livedata 使用
+
+有時也會看到用livedata的寫法
+
+```
 class LoginViewModel(
-    private val model: LoginModel
-): ViewModel() {
+    private val repository: LoginRepository
+) : ViewModel() {
 
+    // 透過livedata儲存最新的狀態，有訂閱的人就會收到通知，會follow生命週期
     private val _loginState = MutableLiveData<LoginState>()
     val loginState: LiveData<LoginState> = _loginState
 
-    init {
-        updateLoginState()
-    }
-
     fun login(email: String, password: String) {
-        model.login(email, password)
-        updateLoginState()
+        _loginState.value = repository.login(email, password)
     }
 
     fun logout() {
-        model.logout()
-        updateLoginState()
+        _loginState.value = repository.logout()
     }
+```
 
-    private fun updateLoginState() {
-        val loginEmail = model.getLoginAccount()?.email ?: ""
+activity監聽
 
-        val loginState = if (loginEmail.isEmpty()) {
-            LoginState.Logout
-        } else {
-            LoginState.Login(loginEmail)
+```
+  override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //觀察資料
+       loginViewModel.loginState.observe(this) { loginState ->
+            showToast(loginState)
         }
-
-        _loginState.value = loginState
-    }
 }
 ```
 
@@ -365,18 +368,55 @@ class LoginViewModel(
 
 目前為止我們做的事和在 MVP 做的事一模一樣，除了少了 View 的參考。
 
-少了 View 的參考的好處是，我們可以利用 Android 的 ViewModel 元件來更好的幫我們管理 View 的生命週期：
+1.  **生命週期的管理**
 
-在 MVP 中，我們的 Presenter 需要參考至一個 View，通常是一個 Activity。但如果我旋轉我的裝置，Activity 將被毀滅並重建，但我們的 Presenter 卻參考至一個已經不存在的 Activity。我們無法自動恢復至先前的狀態。
+    少了 View 的參考的好處是，我們可以利用 Android 的 ViewModel 元件來更好的幫我們管理 View 的生命週期：
+2.  ****[**頁面重建，viewModel能保存原始資料**](https://juejin.cn/post/6844903913045360648)****
 
-如果使用 ViewModel，我們會有一個可以存活過 Activity 重建的元件，並可以保留先前的狀態。
+    在 MVP 中，我們的 Presenter 需要參考至一個 View，通常是一個 Activity。但如果我旋轉我的裝置，Activity 將被毀滅並重建，但我們的 Presenter 卻參考至一個已經不存在的 Activity。我們無法自動恢復至先前的狀態。
+
+    如果使用 ViewModel，我們會有一個可以存活過 Activity 重建的元件，並可以保留先前的狀態。
 
 ![](../.gitbook/assets/viewmodel-lifecycle.png)
 
 ## More
 
-* MVI (Model-View-Intent)
-* MVU (Model-View-Update)
-* VIPER (View Interactor Presenter Entity Routing)
-* FLUX
-* Redux
+![](<../.gitbook/assets/image (1).png>)
+
+*   原則上分為四個層級：
+
+    1. Entities
+    2. Use Cases
+    3. Interface Adapters
+    4. Frameworks & Drivers
+
+    ### Entities
+
+    Entities 指的是我們的核心物件與基礎商業邏輯，像是 user object、password policy、payment api 等跟應用程式無關的核心功能。另一個重點是 Entities 應該是很少變動而且不需依賴於其他任何層級的存在。
+
+    ### Use Cases
+
+    Use Cases 指的是跟我們應用程式相關的商業邏輯。大家可能會覺得跟 Entities 實在是有點接近。
+
+    Use Cases 跟 Entities 的差別在於：Use Cases 多半會再透過多個 Entities 來達成目的，比如說變更密碼的 Use Case 可能要先檢查新密碼是否符合規範、二次輸入的新密碼是否一致，都成功才送出變更密碼的 api。 諸如此類跟 flow 相關的程式碼都屬於這一層級。
+
+    Use Cases 另一個好處是可以限制了 Entities 的存取，減少外部誤用的機會也提高了可讀與安全性。
+
+    ### Interface Adapters
+
+    Interface Adapters 就像我們的 `RecyclerView.Adapter` 一樣，是把二層不一樣的元件，資料與畫面，透過這個中介層完美的介接融合在一起。
+
+    我們之後會介紹的 MVP、MVVM 的 Presenter 跟 ViewModel 就是屬於 Adapter 的角色，介接融合 Android View（Activity） 跟 Use Cases 的地方。
+
+    除了介接融合 function 的呼叫以外，也可以做 data class 的介接，如果對於業務邏輯跟顯示所需要的資料內容不一樣，都可以在 Adapter 這層做轉換。
+
+    ### Frameworks & Drivers
+
+    Frameworks & Drivers 是 platform 相關的程式碼，對 Android 來說就是 Activity 、View 、 xml 或是 RecyclerView.Adapter 等純 UI 相關的程式碼，因為邏輯被拆分到不同的層面，所以通常只會有簡單的畫面呈現以及依據不同的狀態做不同的更新，這一層也不會知道太多業務邏輯，所有事件都會傳遞給 Interface Adapters 做進一步的運算。
+
+    #### 我們要產出的程式碼擁有以下特點：
+
+    1. 關注點分離
+    2. 高度可維護性
+    3. 高度可擴充性
+    4. 高度可測試性
