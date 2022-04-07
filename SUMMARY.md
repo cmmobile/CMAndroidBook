@@ -48,5 +48,4 @@
   * [Scope和Context](duo-zhi-hang-xu/kotlin-coroutine/scope-he-context.md)
   * [Suspend修飾符](duo-zhi-hang-xu/kotlin-coroutine/xian-kuang.md)
 * [習題](duo-zhi-hang-xu/xi-ti.md)
-* [攻防題目](duo-zhi-hang-xu/gong-fang-ti-mu.md)
 * [參考資源](duo-zhi-hang-xu/can-kao-zi-yuan.md)
