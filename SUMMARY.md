@@ -9,7 +9,6 @@
   * [Firebase](xin-ren-xun-lian/gong-ju-pian/firebase.md)
   * [Flurry](xin-ren-xun-lian/gong-ju-pian/flurry.md)
   * [Postman](xin-ren-xun-lian/gong-ju-pian/postman.md)
-  * [Swagger](xin-ren-xun-lian/gong-ju-pian/swagger.md)
 * [Coding Style](xin-ren-xun-lian/code-style.md)
 * [架構](xin-ren-xun-lian/jia-gou.md)
 
